@@ -51,7 +51,6 @@ class DestinationController extends BackendBaseController
      */
     public function store(DestinationRequest $request)
     {
-        dd($request->all());
         $data['row']=$this->model->create($request->all());
         //for multiple image upload
         $imageFiles = $request->file('product_image');

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DestinationRequest extends FormRequest
+class BookedTicketRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class DestinationRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,13 +24,7 @@ class DestinationRequest extends FormRequest
     public function rules()
     {
         return [
-            'placename'=>'required',
-            'address'=>'required',
-            'latitude'=>'required|int',
-            'longitude'=>'required|int',
-            'price'=>'required',
-            'description'=>'required',
-            'ticket_quantity'=>'required'
+            //
         ];
     }
 }

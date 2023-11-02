@@ -4,6 +4,7 @@ use App\Models\categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\backend\BookedTicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,4 +56,6 @@ Route::get('/categories/showAll', [\App\Http\Controllers\backend\CategoryControl
 
 //destination images
 Route::get('/destinationImages/showAll/{id}', [\App\Http\Controllers\backend\DestinationController::class, 'imageShowAll']);
+Route::post('/booked_tickets',[BookedTicketController::class,'store']);
+
 });
