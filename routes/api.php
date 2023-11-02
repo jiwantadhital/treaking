@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Categories;
+use App\Models\categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotificationController;
@@ -42,11 +42,11 @@ Route::post('/forgot/resendOtp', [\App\Http\Controllers\API\AuthController::clas
 Route::post('/changePassword', [\App\Http\Controllers\API\AuthController::class, 'changePassword']);
 
 
- 
- 
+
+
 
 Route::group(['middleware'=>'auth:sanctum'],function(){
-   
+
 
 //destinations
 Route::get('/destination/showAll', [\App\Http\Controllers\backend\DestinationController::class, 'showAll']);

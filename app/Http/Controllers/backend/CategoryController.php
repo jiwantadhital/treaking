@@ -4,7 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use App\Models\Categories;
+use App\Models\categories;
 use Illuminate\Http\Request;
 
 class CategoryController extends BackendBaseController
@@ -15,7 +15,7 @@ class CategoryController extends BackendBaseController
     protected $title;
     protected $model;
     function __construct(){
-        $this->model = new Categories();
+        $this->model = new categories();
     }
 
 
@@ -34,7 +34,7 @@ class CategoryController extends BackendBaseController
         return view($this->__loadDataToView($this->view . 'index'),compact('data'));
     }
     public function showAll(Request $request){
-        $data = Categories::all();
+        $data = categories::all();
         return $data;
     }
 

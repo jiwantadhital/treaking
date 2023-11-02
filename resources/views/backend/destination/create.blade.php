@@ -71,6 +71,16 @@
                 </div>
             </div>
             <div class="form-group row">
+                {!! Form::label('ticket_quantity', 'Ticket Quantity: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}
+                <br>
+                <div class="col-sm-10">
+                    {!! Form::number('ticket_quantity', '', [ 'class'=>'form-control', 'placeholder'=>'Enter ticket qantity']); !!}
+                    @error('ticket_quantity')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
+                </div>
+            </div>
+            <div class="form-group row">
                 {!! Form::label('description', 'Description: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}
                 <br>
                 <div class="col-sm-10">
@@ -81,7 +91,7 @@
                 </div>
             </div>
 
-          
+
             <div class="table-responsive">
   <table class="table table-striped table-bordered" id="image_wrapper">
     <tr>
