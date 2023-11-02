@@ -81,7 +81,6 @@ public function requestTokenGoogle(Request $request) {
     }
     else{
         $randomId =   rand(1000,9999);
-        $paymentN = 1;
         $current_time = \Carbon\Carbon::now()->toDateTimeString();
         $user = User::create([
             'name' => $theName,
@@ -243,7 +242,7 @@ public function register(Request $request)
 }
      
 //update email
-    public function updatePhone(Request $request,$id)
+    public function updateEmail(Request $request,$id)
     {
         //
         $verify=User::find($id);

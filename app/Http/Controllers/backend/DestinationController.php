@@ -76,7 +76,7 @@ class DestinationController extends BackendBaseController
         return $data;
     }
     public function imageShowAll($id){
-        $data = DestinationImages::where('destination_id',$id)->get();
+        $data = destinations_images::where('destination_id',$id)->get();
         return $data;
     } 
     /**
