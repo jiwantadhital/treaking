@@ -242,6 +242,7 @@ public function register(Request $request)
         }
 }
      
+//update email
     public function updatePhone(Request $request,$id)
     {
         //
@@ -266,30 +267,7 @@ public function register(Request $request)
 
     }
 
-    //update payment
-    public function updatePayment(Request $request,$id)
-    {
-        //
-        $verify = students::where('user_id', $id)->firstOrFail();
-        $verify->payment = 1;
-        $verify->save();
-        if($verify->payment == 0){
-            return response()->json([
-     
-                'message' => "failed",
-        
-                ]);
-        }
-        else if($verify->payment == 1){
-        return response()->json([
-     
-            'message' => "successfull",
-            'verify' => $verify->payment
-    
-            ]);
-        }
 
-    }
 
     //login
     public function login(Request $request)
@@ -356,37 +334,8 @@ public function register(Request $request)
             [
                 'message'=>false
             ]
-        ); // PIN matches// PIN does not match
+        ); 
     }
     }
-    // public function login(Request $request)
-    // {
-
-    //     if (!Auth::attempt($request->only('email', 'password'))) {
-    //         return response()->json([
-    //             'message' => 'Invalid login details'
-    //         ], 400);
-    //     }
-    //     $user = User::where('email', $request['email'])->firstOrFail();
-    //     $token = $user->createToken('auth_token')->plainTextToken;
-    //     $userde=auth()->user()->id;
-    //     $student = students::where('user_id', $userde)->first();
-    //     if(auth()->user()->phone_verified == 0){
-    //         $this->basic_email($student->otp,auth()->user()->email);
-    // }
-    // else{
-
-    // }
-    //     return response()->json([
-    //         'payment' => $student->payment,
-    //         'otp' => $student->otp,
-    //         'token' => $token,
-    //         'message' => "successfull",
-    //         'user_id' => auth()->user()->id,
-    //         'user_name' => auth()->user()->name,
-    //         'phone_verified' => auth()->user()->phone_verified,
-    //         'user_email' => auth()->user()->email
-    //     ]);
-    
-    // }
+ 
 }
