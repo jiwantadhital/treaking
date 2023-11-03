@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\destinations_images;
 
 class destinations extends Model
 {
@@ -24,6 +25,10 @@ class destinations extends Model
 
     public function Categories()
     {
-        return $this->belongsTo(User::class, 'category_id');
+        return $this->belongsTo(categories::class, 'category_id');
+    }
+    public function Images()
+    {
+        return $this->hasMany(destinations_images::class,'destination_id');
     }
 }

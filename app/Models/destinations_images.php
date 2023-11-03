@@ -11,4 +11,8 @@ class destinations_images extends Model
     protected $table='destinations_images';
     protected $fillable=['image','destination_id'];
 
+    public function destination()
+    {
+        return $this->belongsTo(destinations::class, 'destination_id');
+    }
 }

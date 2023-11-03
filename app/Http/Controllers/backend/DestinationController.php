@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DestinationRequest;
+use App\Models\categories;
 use App\Models\destinations;
 use App\Models\destinations_images;
 use Illuminate\Http\Request;
@@ -40,9 +41,16 @@ class DestinationController extends BackendBaseController
     public function create()
     {
         $this->title = 'Create';
-        return view($this->__loadDataToView($this->view . 'create'));
+        $data['category'] = categories::pluck('title','id');
+        return view($this->__loadDataToView($this->view . 'create'),compact('data'));
     }
 
+
+    //showByCategory
+    public function showByCategory($id){
+        $data = destinations::where('category_id',$id)->with('Categories')->with('Images')->get();
+        return $data;
+    }
     /**
      * Store a newly created resource in storage.
      *

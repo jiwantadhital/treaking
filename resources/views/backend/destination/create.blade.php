@@ -20,6 +20,15 @@
         @csrf
 
         <div class="card-body">
+        <div class="form-group row">
+                {!! Form::label('category_id', 'Semester: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}
+                <div class="col-sm-10">
+                    {!! Form::select('category_id', $data['category'], null,['class' => 'form-control','placeholder' => 'Select Category']) !!}
+                    @error('category_id')
+                    <span class="text text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+            </div>
              <div class="form-group row">
                 {!! Form::label('placename', 'Place Name: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}
                 <br>

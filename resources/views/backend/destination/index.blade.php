@@ -24,6 +24,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Category</th>
                     <th>Top Destination</th>
                     <th>Action</th>
 
@@ -36,6 +37,7 @@
                     <td>{{$cat->placename}}</td>
                     <td>{{$cat->description}}</td>
                     <td>{{$cat->price}}</td>
+                    <td>{{$cat->category_id}}</td>
                     <td>{{$cat->topdestination}}</td>                  
 
                     <td>   <a href="{{route($route .'show',$cat->id)}}" class="btn btn-sm btn-primary">
@@ -67,6 +69,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Category</th>
                     <th>Top Destination</th>
                     <th>Action</th>
 
