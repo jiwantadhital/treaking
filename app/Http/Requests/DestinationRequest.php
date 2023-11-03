@@ -30,7 +30,9 @@ class DestinationRequest extends FormRequest
             'longitude'=>'required|int',
             'price'=>'required',
             'description'=>'required',
-            'ticket_quantity'=>'required'
+            'ticket_quantity'=>'required',
+            'category_id'=>'required'
+
         ];
     }
 }

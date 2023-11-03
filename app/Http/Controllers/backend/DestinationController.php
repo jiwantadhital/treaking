@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DestinationRequest;
+use App\Models\categories;
 use App\Models\destinations;
 use App\Models\destinations_images;
 use Illuminate\Http\Request;
@@ -40,14 +41,15 @@ class DestinationController extends BackendBaseController
     public function create()
     {
         $this->title = 'Create';
-        return view($this->__loadDataToView($this->view . 'create'));
+        $data['categories'] = categories::pluck('title', 'id');
+        return view($this->__loadDataToView($this->view . 'create'),compact('data'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(DestinationRequest $request)
     {
@@ -55,7 +57,6 @@ class DestinationController extends BackendBaseController
         //for multiple image upload
         $imageFiles = $request->file('product_image');
         $imageArray['destination_id'] = $data['row']->id;
-
         for ($i = 0; $i < count($imageFiles); $i++){
             $image      = $imageFiles[$i];
             $image_name = rand(6785, 9814).'_'.$image->getClientOriginalName();
@@ -68,7 +69,6 @@ class DestinationController extends BackendBaseController
         }else{
             request()->session()->flash('error',$this->panel . 'Creation Failed');
         }
-//        return redirect()->route('category.index',compact('data'));
         return redirect()->route($this->__loadDataToView($this->route . 'index'));
 
     }
@@ -80,14 +80,7 @@ class DestinationController extends BackendBaseController
         $data = destinations_images::where('destination_id',$id)->get();
         return $data;
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    public function show($id)
+      public function show($id)
     {
 
         $this->title= 'View';

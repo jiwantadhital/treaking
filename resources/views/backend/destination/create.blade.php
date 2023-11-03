@@ -20,73 +20,108 @@
         @csrf
 
         <div class="card-body">
-             <div class="form-group row">
-                {!! Form::label('placename', 'Place Name: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}
-                <br>
-                <div class="col-sm-10">
-                    {!! Form::text('placename', '', [ 'class'=>'form-control', 'placeholder'=>'Enter placename']); !!}
-                    @error('placename')
-                    <p class="text-danger">{{$message}}</p>
-                    @enderror
+{{--             <div class="form-group row">--}}
+{{--                {!! Form::label('placename', 'Place Name: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}--}}
+{{--                <br>--}}
+{{--                <div class="col-sm-10">--}}
+{{--                    {!! Form::text('placename', '', [ 'class'=>'form-control', 'placeholder'=>'Enter placename']); !!}--}}
+{{--                    @error('placename')--}}
+{{--                    <p class="text-danger">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--             <div class="form-group row">--}}
+{{--                {!! Form::label('address', 'Address: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}--}}
+{{--                <br>--}}
+{{--                <div class="col-sm-10">--}}
+{{--                    {!! Form::text('address', '', [ 'class'=>'form-control', 'placeholder'=>'Enter address']); !!}--}}
+{{--                    @error('address')--}}
+{{--                    <p class="text-danger">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group row">--}}
+{{--                {!! Form::label('latitude', 'Latitude: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}--}}
+{{--                <br>--}}
+{{--                <div class="col-sm-10">--}}
+{{--                    {!! Form::text('latitude', '', [ 'class'=>'form-control', 'placeholder'=>'Enter latitude']); !!}--}}
+{{--                    @error('latitude')--}}
+{{--                    <p class="text-danger">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group row">--}}
+{{--                {!! Form::label('longitude', 'Longitude: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}--}}
+{{--                <br>--}}
+{{--                <div class="col-sm-10">--}}
+{{--                    {!! Form::text('longitude', '', [ 'class'=>'form-control', 'placeholder'=>'Enter longitude']); !!}--}}
+{{--                    @error('longitude')--}}
+{{--                    <p class="text-danger">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group row">--}}
+{{--                {!! Form::label('price', 'Price: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}--}}
+{{--                <br>--}}
+{{--                <div class="col-sm-10">--}}
+{{--                    {!! Form::text('price', '', [ 'class'=>'form-control', 'placeholder'=>'Enter price']); !!}--}}
+{{--                    @error('price')--}}
+{{--                    <p class="text-danger">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group row">--}}
+{{--                {!! Form::label('ticket_quantity', 'Ticket Quantity: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}--}}
+{{--                <br>--}}
+{{--                <div class="col-sm-10">--}}
+{{--                    {!! Form::number('ticket_quantity', '', [ 'class'=>'form-control', 'placeholder'=>'Enter ticket qantity']); !!}--}}
+{{--                    @error('ticket_quantity')--}}
+{{--                    <p class="text-danger">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="form-group row">--}}
+{{--                {!! Form::label('description', 'Description: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}--}}
+{{--                <br>--}}
+{{--                <div class="col-sm-10">--}}
+{{--                    {!! Form::textarea('description', '', [ 'class'=>'ckeditor form-control', 'placeholder'=>'Enter Description','id'=>'summernotes',]); !!}--}}
+{{--                    @error('description')--}}
+{{--                    <p class="text-danger">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+{{--            </div>--}}
+            @foreach ([
+                'placename' => 'Place Name',
+                'address' => 'Address',
+                'latitude' => 'Latitude',
+                'longitude' => 'Longitude',
+                'price' => 'Price',
+                'ticket_quantity' => 'Ticket Quantity',
+                'description' => 'Description',
+            ] as $fieldName => $label)
+                <div class="form-group row">
+                    {!! Form::label($fieldName, $label . ': <span class="required">*</span>', ['class' => 'col-sm-2 col-form-label'], false); !!}
+                    <br>
+                    <div class="col-sm-10">
+                        @if ($fieldName === 'description')
+                            {!! Form::textarea($fieldName, '', ['class' => 'ckeditor form-control', 'placeholder' => 'Enter ' . $label, 'id' => 'summernotes']) !!}
+                        @elseif ($fieldName === 'ticket_quantity')
+                            {!! Form::number($fieldName, '', ['class' => 'form-control', 'placeholder' => 'Enter ' . $label]) !!}
+                        @else
+                            {!! Form::text($fieldName, '', ['class' => 'form-control', 'placeholder' => 'Enter ' . $label]) !!}
+                        @endif
+                        @error($fieldName)
+                        <p class="text-danger error-message">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
-            </div>
-             <div class="form-group row">
-                {!! Form::label('address', 'Address: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}
-                <br>
-                <div class="col-sm-10">
-                    {!! Form::text('address', '', [ 'class'=>'form-control', 'placeholder'=>'Enter address']); !!}
-                    @error('address')
-                    <p class="text-danger">{{$message}}</p>
-                    @enderror
-                </div>
-            </div>
+            @endforeach
             <div class="form-group row">
-                {!! Form::label('latitude', 'Latitude: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}
-                <br>
+                {!! Form::label('category_id', 'Select Category:', ['class' => 'col-sm-2 col-form-label']); !!}
                 <div class="col-sm-10">
-                    {!! Form::text('latitude', '', [ 'class'=>'form-control', 'placeholder'=>'Enter latitude']); !!}
-                    @error('latitude')
-                    <p class="text-danger">{{$message}}</p>
-                    @enderror
-                </div>
-            </div>
-            <div class="form-group row">
-                {!! Form::label('longitude', 'Longitude: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}
-                <br>
-                <div class="col-sm-10">
-                    {!! Form::text('longitude', '', [ 'class'=>'form-control', 'placeholder'=>'Enter longitude']); !!}
-                    @error('longitude')
-                    <p class="text-danger">{{$message}}</p>
-                    @enderror
-                </div>
-            </div>
-            <div class="form-group row">
-                {!! Form::label('price', 'Price: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}
-                <br>
-                <div class="col-sm-10">
-                    {!! Form::text('price', '', [ 'class'=>'form-control', 'placeholder'=>'Enter price']); !!}
-                    @error('price')
-                    <p class="text-danger">{{$message}}</p>
-                    @enderror
-                </div>
-            </div>
-            <div class="form-group row">
-                {!! Form::label('ticket_quantity', 'Ticket Quantity: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}
-                <br>
-                <div class="col-sm-10">
-                    {!! Form::number('ticket_quantity', '', [ 'class'=>'form-control', 'placeholder'=>'Enter ticket qantity']); !!}
-                    @error('ticket_quantity')
-                    <p class="text-danger">{{$message}}</p>
-                    @enderror
-                </div>
-            </div>
-            <div class="form-group row">
-                {!! Form::label('description', 'Description: <span class="required">*</span>',['class' => 'col-sm-2 col-form-label'],false); !!}
-                <br>
-                <div class="col-sm-10">
-                    {!! Form::textarea('description', '', [ 'class'=>'ckeditor form-control', 'placeholder'=>'Enter Description','id'=>'summernotes',]); !!}
-                    @error('description')
-                    <p class="text-danger">{{$message}}</p>
+                    {!! Form::select('category_id', $data['categories'], null, ['class' => 'form-control', 'placeholder' => 'Select Categrory']); !!}
+                    @error('dropdown_field')
+                    <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
             </div>

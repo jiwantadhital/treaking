@@ -19,7 +19,8 @@ class destinations extends Model
         'description',
         'status',
         'topdestination',
-        'ticket_quantity'
+        'ticket_quantity',
+        'category_id'
     ];
 
     public function Categories()
