@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Destinations;
+use App\Http\Requests\DestinationRequest;
+use App\Models\destinations;
 use App\Models\destinations_images;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class DestinationController extends BackendBaseController
     protected $title;
     protected $model;
     function __construct(){
-        $this->model = new Destinations();
+        $this->model = new destinations();
     }
 
 
@@ -48,7 +49,7 @@ class DestinationController extends BackendBaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DestinationRequest $request)
     {
         $data['row']=$this->model->create($request->all());
         //for multiple image upload
@@ -72,13 +73,13 @@ class DestinationController extends BackendBaseController
 
     }
     public function showAll(){
-        $data = Destinations::all();
+        $data = destinations::all();
         return $data;
     }
     public function imageShowAll($id){
         $data = destinations_images::where('destination_id',$id)->get();
         return $data;
-    } 
+    }
     /**
      * Display the specified resource.
      *
