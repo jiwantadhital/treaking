@@ -5,7 +5,6 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DestinationRequest;
 use App\Models\categories;
-use App\Models\categories;
 use App\Models\destinations;
 use App\Models\destinations_images;
 use Illuminate\Http\Request;
