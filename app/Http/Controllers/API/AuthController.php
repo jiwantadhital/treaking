@@ -67,7 +67,6 @@ public function requestTokenGoogle(Request $request) {
         $userde=$user->id;
 
     // Update user's device token
-    $user->device_token = $request->input('device_token');
     $user->last_login = now();
     $user->save();
         $student = appusers::where('user_id', $userde)->first();
@@ -106,6 +105,8 @@ public function requestTokenGoogle(Request $request) {
     // $token = $userFromDb->createToken('Laravel Sanctum Client')->plainTextToken;
     // $response = ['token' => $token, 'message' => 'Google Login/Signup Successful'];
     // return response($response, 200);
+    // $user->device_token = $request->input('device_token');
+
 }
 
 
@@ -316,13 +317,13 @@ public function register(Request $request)
         User::where('id', $user->id)->update(['email_verified' => 1]);
         return response()->json(
             [
-                'message'=>true
+                'message'=>"yes"
             ]
         ); // PIN matches
         }catch (\Exception $e){
             return response()->json(
                 [
-                    'message'=>false
+                    'message'=>"error"
                 ]
                 );
         }
@@ -331,7 +332,7 @@ public function register(Request $request)
     } else {
         return response()->json(
             [
-                'message'=>false
+                'message'=>"no"
             ]
         );
     }

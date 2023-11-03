@@ -26,8 +26,8 @@ class DestinationRequest extends FormRequest
         return [
             'placename'=>'required',
             'address'=>'required',
-            'latitude'=>'required|int',
-            'longitude'=>'required|int',
+            'latitude'=>'required|numeric',
+            'longitude'=>'required|numeric',
             'price'=>'required',
             'description'=>'required',
             'ticket_quantity'=>'required',

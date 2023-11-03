@@ -51,6 +51,8 @@ Route::group(['middleware'=>'auth:sanctum'],function(){
 
 //destinations
 Route::get('/destination/showAll', [\App\Http\Controllers\backend\DestinationController::class, 'showAll']);
+
+Route::get('/destination/showAll/{id}', [\App\Http\Controllers\backend\DestinationController::class, 'showByCategory']);
 // Categories
 Route::get('/categories/showAll', [\App\Http\Controllers\backend\CategoryController::class, 'showAll']);
 
