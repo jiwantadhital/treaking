@@ -16,7 +16,7 @@ class destinations extends Model
         'address',
         'latitude',
         'longitude',
-        'price',
+        'price', 
         'description',
         'status',
         'topdestination',
